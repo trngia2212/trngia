@@ -24,7 +24,7 @@ body {
 .hero {
   min-height: 100vh;
   width: 100vw;
-  background: url('../images/smith.jpg') no-repeat center center;
+  background: url('../images/smith.JPG') no-repeat center center;
   background-size: cover;
   display: flex;
   flex-direction: column;
