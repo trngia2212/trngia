@@ -142,6 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function openCertificateModal(certificateSrc) { // Đổi tên hàm để rõ ràng hơn
         modalCertificateImg.src = certificateSrc;
+        certificateModal.style.display = 'block';
         certificateModal.classList.remove('hide');
         certificateModal.classList.add('show');
         document.body.classList.add('modal-open');
@@ -149,10 +150,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function closeCertificateModal() { // Đổi tên hàm để rõ ràng hơn
         certificateModal.classList.add('hide');
+        certificateModal.classList.remove('show');
         certificateModal.addEventListener('animationend', function handler() {
             if (certificateModal.classList.contains('hide')) {
                 certificateModal.classList.remove('show');
                 certificateModal.style.display = 'none';
+                modalCertificateImg.src = ''; 
             }
             document.body.classList.remove('modal-open');
             certificateModal.removeEventListener('animationend', handler);
