@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 body {
   margin: 0;
   padding: 0;
@@ -33,6 +36,22 @@ body {
   position: relative;
   background-color: rgba(0, 0, 0, 0.7);
   background-blend-mode: multiply;
+}
+
+.animated-text span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 1s forwards;
+  margin-right: 1px;
+  letter-spacing: 1px;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .cv-section {
@@ -149,6 +168,25 @@ body {
 .hero-left .btn:hover {
   background-color: #1976d2; /* Màu xanh đậm hơn khi di chuột */
 }
+.hero-left a.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #2196f3;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 30px;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.hero-left a.btn:hover {
+  background-color: #1976d2;
+  transform: translateY(-3px);
+}
+
 
 /*--ABOUT --*/
 .about {
@@ -221,12 +259,12 @@ body {
 }
 
 .about-image {
+  position: relative; /* Để có thể sử dụng hiệu ứng hover */
   flex: 0 0 auto; /* Ngăn hình ảnh co giãn, chỉ chiếm đúng kích thước của nó */
   width: 400px; /* Đặt chiều rộng cố định cho khung ảnh */
-  height: auto; /* Chiều cao tự động để giữ tỉ lệ */
-  overflow: hidden; /* Đảm bảo ảnh không tràn ra khỏi khung */
-  border-radius: 10px; /* Bo góc nhẹ cho khung ảnh */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Thêm bóng đổ cho ảnh */
+  height: 700px; 
+  overflow: visible; /* Đảm bảo ảnh không tràn ra khỏi khung */
+  cursor: pointer;
 }
 
 .about-image img {
@@ -234,25 +272,66 @@ body {
   height: 100%; /* Ảnh chiếm toàn bộ chiều cao của khung */
   object-fit: cover; /* Đảm bảo ảnh được cắt/thu phóng để vừa khung mà không bị méo */
   display: block; /* Loại bỏ khoảng trắng dưới ảnh */
+  border-radius: 20px;
+  transition: transform 0.8s ease, opacity 0.6s ease, box-shadow 0.6s ease;
+  z-index: 2;
+  position: relative;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+  transform: translate(-30px, -30px);
+  opacity: 1;   
 }
-.about-image:hover{
-  transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);;
+/* Hiện ra mượt từ trái trên xuống */
+.about-image img.fade-in {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+.about-image:hover img{
+  transform: scale(1.05) ; /* Hiệu ứng phóng to nhẹ khi hover */
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
 }
 .about-box-item ul li {
   margin-bottom: 10px;
   line-height: 1.5;
+}
+.vertical-shadow {
+  position: absolute;
+  top: 5px;
+  right: -20px; /* điều chỉnh để lộ ra bên trái */
+  width: 350px; /* độ dày của bóng */
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9); /* đậm hơn để giống mẫu */
+  border-radius: 10px;
+  z-index: 1;
+  box-shadow: 4px 0 12px rgba(0,0,0,0.2); /* đổ bóng nhẹ */
+  opacity: 1;
+  transition: transform 0.8s ease, opacity 0.6s ease, box-shadow 0.6s ease;
+  transform: translate(30px, 30px);
+}
+/* Hiện ra mượt từ dưới phải lên */
+.vertical-shadow.fade-in {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+.about-image img,
+.vertical-shadow {
+  opacity: 1;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease;
 }
 
 /* Container cho nút "Xem Kỹ Năng" */
 .scroll-to-skills-container {
     margin-top: 30px; /* Khoảng cách từ box "Sở thích" phía trên */
     text-align: center; /* Căn giữa nút trong container này */
-    /* Có thể thêm padding nếu muốn box này lớn hơn */
-    /* padding: 15px; */
-    /* background-color: #f0f0f0; */ /* Nền nhẹ nếu muốn */
-    /* border-radius: 10px; */
-    /* box-shadow: 0 2px 8px rgba(0,0,0,0.1); */
+    
 }
 
 .scroll-to-skills-btn {
@@ -292,6 +371,7 @@ body {
     padding: 15px; /* Khoảng đệm xung quanh gallery */
     border-radius: 8px; /* Bo góc cho gallery */
     position: relative; /* Dùng để định vị ảnh con */
+   
 }
 /* Container mới để bọc ảnh và nhãn hover */
 .hobbies-gallery .image-container {
@@ -308,13 +388,14 @@ body {
 .hobbies-gallery img {
     max-width: 100%;
     max-height: calc(100% - 30px); /* Tính toán chiều cao tối đa trừ đi không gian cho text */
-    width: auto;
-    height: auto;
+    width: 80%;
+    height: 90%;
     object-fit: cover; /* Hoặc 'cover' tùy thuộc vào cách bạn muốn ảnh hiển thị */
-    border-radius: 10px;
+    border-radius: 20px;
     display: block;
     opacity: 1; /* Mặc định hiển thị */
     transition: opacity 0.5s ease; /* Hiệu ứng fade */
+    margin: auto; /* Căn giữa ảnh trong container */
 }
 
 /* THÊM: Style cho lớp phủ (label) */
@@ -355,6 +436,14 @@ body {
     justify-content: center;
     align-items: center;
     color: #fff; /* Chữ trắng trên nền tối */
+}
+
+.centered-title {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    width: 100%;
+    display: block;
+    top: 20px;
 }
 
 .skills-content {
@@ -421,6 +510,28 @@ body {
     flex-direction: column; /* Sắp xếp grid và toggle dọc */
     align-items: center; /* Căn giữa nội dung trong cột phải */
     gap: 40px; /* Khoảng cách giữa grid và toggle */
+}
+/* Hiệu ứng xuất hiện từ trái/phải */
+.skills-left,
+.skills-right {
+  opacity: 0;
+  transform: translateX(0);
+  transition: all 0.8s ease-out;
+  will-change: transform, opacity;
+}
+
+.skills-left.hidden-left {
+  transform: translateX(-100px);
+}
+
+.skills-right.hidden-right {
+  transform: translateX(100px);
+}
+
+.skills-left.animate-in,
+.skills-right.animate-in {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .skills-grid {
@@ -1429,4 +1540,35 @@ body.modal-open {
         padding: 25px 15px;
         font-size: 0.9rem;
     }
+}
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #2196f3;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.btn:hover {
+  background-color: #1976d2;
+  transform: translateY(-2px);
+}
+
+.mainnav a {
+  color: #fff;
+  padding: 10px 18px;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.mainnav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
 }

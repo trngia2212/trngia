@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
         'images/nghenhac.jpg',
     ];
     const hobbyDataNames = [ // Dữ liệu cho nhãn hover
-        'Đá bóng', // Nội dung cho nhãn
-        'Chơi game',
-        'Đọc sách',
-        'Nghe nhạc',
+        'Đá bóng⚽', // Nội dung cho nhãn
+        'Chơi game🎮️',
+        'Đọc sách📖',
+        'Nghe nhạc🎧',
     ];
     let currentHobbyImageIndex = 0; // Đổi tên biến để rõ ràng hơn
     let isShowingHobbyGallery = false; // Đổi tên biến để rõ ràng hơn
@@ -327,3 +327,97 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 }); 
+
+function animateTextByLetter() {
+    const animatedTextElements = document.querySelectorAll('.animated-text');
+
+    animatedTextElements.forEach(element => {
+        const text = element.textContent;
+        element.innerHTML = ''; // Xoá nội dung cũ
+
+        text.split('').forEach((char, index) => {
+            const span = document.createElement('span');
+            span.textContent = char;
+            span.style.animationDelay = `${index * 0.07}s`;
+            element.appendChild(span);
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    animateTextByLetter();
+});
+
+function animateHeroWhenVisible() {
+    const heroTexts = document.querySelectorAll('.animated-text');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateTextByLetter();
+            }
+        });
+    }, {
+        threshold: 0.6
+    });
+
+    heroTexts.forEach(el => observer.observe(el));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    animateHeroWhenVisible();
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const aboutImg = document.getElementById('mainAboutImg');
+    const shadow = document.querySelector('.vertical-shadow');
+    let isOriginal = true;
+
+    aboutImg.addEventListener('click', () => {
+        // Bắt đầu ẩn ảnh và bóng
+        aboutImg.classList.add('fade-out');
+        shadow.classList.add('fade-out');
+
+        setTimeout(() => {
+            // Đổi ảnh
+            aboutImg.src = isOriginal ? 'images/tngia.JPG' : 'images/smith.JPG';
+            isOriginal = !isOriginal;
+
+            // Reset class fade-out
+            aboutImg.classList.remove('fade-out');
+            shadow.classList.remove('fade-out');
+
+            // Bắt đầu hiện ra với hiệu ứng trượt
+            aboutImg.classList.add('fade-in');
+            shadow.classList.add('fade-in');
+
+            // Sau hiệu ứng, xóa class để có thể lặp lại
+            setTimeout(() => {
+                aboutImg.classList.remove('fade-in');
+                shadow.classList.remove('fade-in');
+            }, 600); // Thời gian khớp với transition
+        }, 200); // Đợi kết thúc fade-out
+    });
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const observerOptions = {
+    threshold: 0.3, // phần trăm phần tử xuất hiện trên màn hình để trigger
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+      } else {
+        entry.target.classList.remove('animate-in'); // Cho phép reset lại khi cuộn ra ngoài
+      }
+    });
+  }, observerOptions);
+
+  const targets = document.querySelectorAll('.skills-left, .skills-right, .cert-left, .cert-right, .project-left, .project-right');
+  targets.forEach(el => observer.observe(el));
+});
+

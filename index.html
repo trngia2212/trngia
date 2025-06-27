@@ -23,7 +23,7 @@
   </nav>
     <div class="hero-left">
       <h2>Xin chào, tôi là</h2>
-      <h1><b>Trọng Nghĩa.</b></h1>
+      <h1 class="animated-text"><b>Trọng Nghĩa.</b></h1>
       <p>Tôi là một Front End Web Developer</p>
       <a href="#about" class="btn">ABOUT ME</a>
     </div>
@@ -62,26 +62,27 @@
                 </div>
                 <div class="scroll-to-skills-container">
                 <a href="#skills" class="scroll-to-skills-btn">
-                    <span class="text">Xem Kỹ Năng</span>
+                    <span class="text">MY SKILLS</span>
                     <span class="icon">&#8595;</span> </a>
                 </div>
             </div> 
           </div> 
           <div class="about-image">
-            <img src="images/smith.JPG" alt="Trọng Nghĩa">
+            <div class="vertical-shadow"></div>
+            <img id="mainAboutImg" src="images/smith.JPG" alt="Trọng Nghĩa">
           </div>
     </div> 
   </section>
 
   <section class="skills cv-section" id="skills">
     <div class="skills-content">
-        <div class="skills-left">
-            <h2>Kĩ năng</h2>
-            <h1>Những kỹ năng mà tôi <br> đã học tập và sử dụng.</h1>
-            <p>Đây là những công nghệ tôi đã sử dụng xuyên suốt quá trình học tập và thực hiện dự án. Với các công nghệ này, tôi tạo ra giao diện dễ dùng, dễ hiểu, phù hợp giúp người dùng thao tác nhanh, hiệu quả mà không gặp rắc rối.</p>
+        <div class="skills-left hidden-left">
+            <h2 class="centered-title">MY SKILLS</h2>
+            <h1>Những kỹ năng mà tôi <br> đã sử dụng.</h1>
+            <ul><p>Đây là những công nghệ tôi đã sử dụng xuyên suốt quá trình học tập và thực hiện dự án. Với các công nghệ này, tôi tạo ra giao diện dễ dùng, dễ hiểu, phù hợp giúp người dùng thao tác nhanh, hiệu quả mà không gặp rắc rối.</p></ul>
             <a href="#certs" class="btn">MY CERTIFICATES</a>
         </div>
-        <div class="skills-right">
+        <div class="skills-right hidden-right">
             <div class="skills-grid" id="skillsGrid">
                 <div class="skill-item">
                     <img src="images/html5.png" alt="HTML5">
@@ -148,7 +149,7 @@
         <div class="project-carousel">
             <div class="project-item active">
                 <div class="project-details">
-                    <span class="project-number">01</span>
+                    <h3 class="project-number">01</h3>
                     <h3 class="project-title">Hệ thống phát hiện số xe trên một làn đường</h3>
                     <div class="project-description">
                         <p>💡 <strong>Cảm Hứng & Ý Tưởng</strong></p>
@@ -162,7 +163,7 @@
 
             <div class="project-item">
                 <div class="project-details">
-                    <span class="project-number">02</span>
+                    <h3 class="project-number">02</h3>
                     <h3 class="project-title">Game robot tìm đường đơn giản</h3>
                     <div class="project-description">
                         <p><li>Những đứa trẻ hiện nay đang có cơ hội tiếp xúc với Internet từ sớm, do đó tôi tạo ra 1 con game đơn giản nhằm hướng tới các đối tượng trẻ nhỏ; giúp chúng kích thích tư duy. Game áp dụng thuật toán Greedysearch giúp cho robot tìm đường đi ngắn nhất và ghi nhận điểm số.</li></p>
